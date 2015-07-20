@@ -1,3 +1,5 @@
+import os
+
 from git import Repo
 
 git_url = 'https://github.com/fabianopetroni/assetManager.git'
@@ -12,7 +14,7 @@ release = 'major'
 
 if not os.path.isdir(app_dir):
     os.makedirs(app_dir)
-    
+
 listDir = os.listdir(app_dir)
 
 listDir.sort()
@@ -33,18 +35,18 @@ else:
     if release == 'patch':
         next = str(int(versionList[-1]) + 1)
         versionList[-1] = nextPatch
-    
+
     elif release == 'minor':
         next = str(int(versionList[-2]) + 1)
         versionList[-1] = '0'
         versionList[-2] = nextPatch
-        
+
     elif release == 'major':
         next = str(int(versionList[-3]) + 1)
         versionList[-1] = '0'
         versionList[-2] = '0'
         versionList[-3] = nextPatch
-    
+
     newRelease = app + '-{0}.{1}.{2}'.format(versionList[0], versionList[1], versionList[2])
         
     deploy_dir = '{0}/{1}'.format(app_dir, newRelease)
